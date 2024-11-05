@@ -21,14 +21,16 @@ public class ReadFile {
 
     private static final String USER_DIR = System.getProperty("user.dir");
 
-    private static final String FILE_NAME = "receivement-epcs.json";
+    //private static final String FILE_NAME = "receivement-epcs.json";
 
-    private static final String TARGET_FILE_NAME = "receivement-payload.json";
+    //private static final String TARGET_FILE_NAME = "receivement-payload.json";
+
+    private static final String JSON_EXTENSION = ".json";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReadFile.class);
 
-    public static void generatePayloadForReceiving(String handling, String request, Integer qty) {
-        File file = new File(USER_DIR + "/" + FILE_NAME);
+    public static void generatePayloadForReceiving(String handling, String request, Integer qty, String sourceFileName) {
+        File file = new File(USER_DIR + "/" + sourceFileName);
         LOGGER.info("Starting to read file: " + file.getAbsoluteFile());
 
         try {
@@ -37,7 +39,8 @@ public class ReadFile {
             List<ReceivingPayload> payloadList = getPayloadList(result, handling, request, qty);
 
             LOGGER.info("Escrevendo arquivo...");
-            mapper.writeValue(new File(USER_DIR + "/" + TARGET_FILE_NAME), payloadList);
+            String targetFileName = sourceFileName.replace(JSON_EXTENSION, "") + "-payload" + JSON_EXTENSION;
+            mapper.writeValue(new File(USER_DIR + "/" + targetFileName), payloadList);
 
             LOGGER.info("Aplicação encerrada.");
         } catch (Exception ex) {

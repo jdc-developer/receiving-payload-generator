@@ -14,7 +14,8 @@ public class Main {
                 String handling = args[1];
                 String request = args[2];
                 Integer qty = Integer.parseInt(args[3]);
-                ReadFile.generatePayloadForReceiving(handling, request, qty);
+                String sourceFileName = args[4];
+                ReadFile.generatePayloadForReceiving(handling, request, qty, sourceFileName);
                 break;
         }
     }
