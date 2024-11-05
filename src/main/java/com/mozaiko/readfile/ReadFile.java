@@ -34,7 +34,7 @@ public class ReadFile {
         try {
             String fileContent = getFileContent(file);
             EpcListFile result = mapper.readValue(fileContent, EpcListFile.class);
-            List<String> payloadList = getPayloadList(result, handling, request, qty);
+            List<ReceivingPayload> payloadList = getPayloadList(result, handling, request, qty);
 
             LOGGER.info("Escrevendo arquivo...");
             mapper.writeValue(new File(USER_DIR + "/" + TARGET_FILE_NAME), payloadList);
@@ -70,7 +70,7 @@ public class ReadFile {
         throw new FileNotFoundException();
     }
 
-    private static List<String> getPayloadList(EpcListFile result, String handling,
+    private static List<ReceivingPayload> getPayloadList(EpcListFile result, String handling,
                                                String request, Integer qty) throws IOException {
         LOGGER.info("Iniciando criação do arquivo de payload.");
         LOGGER.info("_handling: " + handling);
@@ -78,7 +78,7 @@ public class ReadFile {
         LOGGER.info("qty: " + qty);
 
         int startIndex = 0;
-        List<String> payloadList = new ArrayList<>();
+        List<ReceivingPayload> payloadList = new ArrayList<>();
         while (startIndex < result.getEpcs().size()) {
             int controlIndex = 0;
             ReceivingPayload payload = new ReceivingPayload(handling, request, new ArrayList<>());
@@ -90,7 +90,7 @@ public class ReadFile {
                 if (controlIndex == qty) break;
             }
 
-            payloadList.add(mapper.writeValueAsString(payload));
+            payloadList.add(payload);
         }
 
         LOGGER.info("Payload criado.");

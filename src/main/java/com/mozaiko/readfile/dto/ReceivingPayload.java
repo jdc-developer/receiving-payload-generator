@@ -20,9 +20,9 @@ public class ReceivingPayload {
 
     @JsonProperty("_request")
     private String request;
-    private List<String> readings = new ArrayList<>();
+    private List<Epc> readings = new ArrayList<>();
 
     public void addReading(String epc) {
-        readings.add(epc);
+        readings.add(new Epc(epc));
     }
 }
