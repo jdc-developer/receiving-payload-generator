@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -19,5 +20,9 @@ public class ReceivingPayload {
 
     @JsonProperty("_request")
     private String request;
-    private List<String> readings;
+    private List<String> readings = new ArrayList<>();
+
+    public void addReading(String epc) {
+        readings.add(epc);
+    }
 }

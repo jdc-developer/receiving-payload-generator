@@ -10,8 +10,11 @@ public class Main {
 
         ReadType readType = ReadType.toEnum(Integer.parseInt(args[0]));
         switch (readType) {
-            case SALE:
-                ReadFile.generatePayloadForReceiving();
+            case RECEIVING:
+                String handling = args[1];
+                String request = args[2];
+                Integer qty = Integer.parseInt(args[3]);
+                ReadFile.generatePayloadForReceiving(handling, request, qty);
                 break;
         }
     }

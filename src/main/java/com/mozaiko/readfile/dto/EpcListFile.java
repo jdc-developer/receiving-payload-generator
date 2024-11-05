@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SkuListFile {
+public class EpcListFile {
 
-    private List<String> skus = new ArrayList<>();
+    private List<String> epcs = new ArrayList<>();
 
 }
