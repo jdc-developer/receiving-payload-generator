@@ -1,3 +1,8 @@
+com\mozaiko\readfile\dto\ReceivingPayload.class
+com\mozaiko\readfile\dto\EpcListFile.class
 com\mozaiko\readfile\ReadFile.class
-com\mozaiko\readfile\dto\SkuListFile.class
+com\mozaiko\readfile\ReadType.class
+com\mozaiko\Main$1.class
+com\mozaiko\readfile\dto\Epc.class
 com\mozaiko\Main.class
+com\mozaiko\readfile\exception\FileNotFoundException.class

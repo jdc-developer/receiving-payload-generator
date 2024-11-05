@@ -21,7 +21,7 @@ public class ReadFile {
 
     private static final String USER_DIR = System.getProperty("user.dir");
 
-    private static final String FILE_NAME = "sales-skus.json";
+    private static final String FILE_NAME = "sales-epcs.json";
 
     private static final String TARGET_FILE_NAME = "payload.json";
 
