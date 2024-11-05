@@ -23,7 +23,7 @@ public class ReadFile {
 
     private static final String FILE_NAME = "receivement-epcs.json";
 
-    private static final String TARGET_FILE_NAME = "payload.json";
+    private static final String TARGET_FILE_NAME = "receivement-payload.json";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReadFile.class);
 
