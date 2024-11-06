@@ -4,10 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>sales-payload-generator</artifactId>
-    <name>Sales Payload Generator</name>
+    <groupId>com.mozaiko</groupId>
+    <artifactId>receivement-payload-generator</artifactId>
+    <name>Receivement Payload Generator</name>
     <version>1.0-SNAPSHOT</version>
+
+    <organization>
+        <name>Mozaiko</name>
+        <url>https://mozaiko.io</url>
+    </organization>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
