@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mozaiko.readfile.dto.EpcListFile;
 import com.mozaiko.readfile.dto.ReceivingPayload;
 import com.mozaiko.readfile.exception.FileNotFoundException;
+import com.mozaiko.readfile.exception.OutOfBoundsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +87,7 @@ public class ReadFile {
         return sb.toString();
     }
 
-    private static List<ReceivingPayload> getPayloadList(EpcListFile epcListFile) {
+    private static List<ReceivingPayload> getPayloadList(EpcListFile epcListFile) throws OutOfBoundsException {
         LOGGER.info("Iniciando criação do arquivo de payload.");
         LOGGER.info("_handling: " + epcListFile.getHandling());
         LOGGER.info("_request: " + epcListFile.getRequest());
@@ -98,6 +99,7 @@ public class ReadFile {
             int controlIndex = 0;
             ReceivingPayload payload = new ReceivingPayload(epcListFile.getHandling(), epcListFile.getRequest(), new ArrayList<>());
 
+            if (epcListFile.getQty() > epcListFile.getEpcs().size()) throw new OutOfBoundsException();
             for (int i = startIndex; i < epcListFile.getEpcs().size(); i++) {
                 payload.addReading(epcListFile.getEpcs().get(i));
                 controlIndex++;
