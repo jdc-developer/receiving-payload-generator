@@ -33,15 +33,16 @@ public class ReadFile {
         LOGGER.info("Iniciando a leitura dos arquivos localizados na pasta: " + sourceFolder.getAbsoluteFile());
 
         if (!sourceFolder.exists()) throw new FileNotFoundException("Não foi possível encontrar a pasta " + FILES_FOLDER + ". Por favor, tente novamente após criar a pasta.");
-        
+
         File[] files = sourceFolder.listFiles();
-        if (files == null) throw new FileNotFoundException("A pasta de arquivos de entrada está vazia. Por favor, popule a pasta.");
+        if (files == null || files.length == 0) throw new FileNotFoundException("A pasta de arquivos de entrada está vazia. Por favor, popule a pasta.");
         List<ReceivingPayload> receivingPayloads = new ArrayList<>();
         Arrays.stream(files).forEach(file -> receivingPayloads.addAll(readFile(file)));
 
         try {
             LOGGER.info("Escrevendo arquivo...");
-            MAPPER.writeValue(new File(USER_DIR + "/" + TARGET_FILE_NAME), receivingPayloads);
+            File file = new File(USER_DIR + "/" + TARGET_FILE_NAME);
+            MAPPER.writeValue(file, receivingPayloads);
             LOGGER.info("Aplicação encerrada.");
         } catch (IOException ex) {
             LOGGER.error("Ocorreu um erro na criação do arquivo de payload");
